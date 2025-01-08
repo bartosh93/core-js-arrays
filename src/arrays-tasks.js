@@ -123,7 +123,7 @@ function getAverage(arr) {
   if (arr.length > 0) {
     return (
       Math.round(
-        (arr.reduce(function (prev, el) {
+        (arr.reduce(function x(prev, el) {
           return prev + el;
         }) /
           arr.length) *
