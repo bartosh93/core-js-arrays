@@ -37,8 +37,20 @@ function getIntervalArray(start, end) {
  *    sumArrays([10, 20, 30], [5, 10, 15]) => [15, 30, 45]
  *    sumArrays([-1, 0, 1], [1, 2, 3, 4]) => [0, 2, 4, 4]
  */
-function sumArrays(/* arr1, arr2 */) {
-  throw new Error('Not implemented');
+function sumArrays(arr1, arr2) {
+  let ar1;
+  let ar2;
+  if (arr1.length > arr2.length) {
+    ar1 = arr1.slice();
+    ar2 = arr2.slice();
+  } else {
+    ar1 = arr2.slice();
+    ar2 = arr1.slice();
+  }
+  return ar1.map(function x(el, i) {
+    const s = ar2[i] ? ar2[i] : 0;
+    return el + s;
+  });
 }
 
 /**
@@ -337,8 +349,15 @@ function calculateBalance(arr) {
  *    createChunks(['a', 'b', 'c', 'd', 'e'], 2) => [['a', 'b'], ['c', 'd'], ['e']]
  *    createChunks([10, 20, 30, 40, 50], 1) => [[10], [20], [30], [40], [50]]
  */
-function createChunks(/* arr, chunkSize */) {
-  throw new Error('Not implemented');
+function createChunks(arr, chunkSize) {
+  return arr.reduce((acc, item, index) => {
+    const chunkIndex = Math.floor(index / chunkSize);
+    if (!acc[chunkIndex]) {
+      acc[chunkIndex] = [];
+    }
+    acc[chunkIndex].push(item);
+    return acc;
+  }, []);
 }
 
 /**
@@ -369,8 +388,11 @@ function generateOdds(len) {
  *   getElementByIndices(['one','two','three'], [2]) => 'three'  (arr[2])
  *   getElementByIndices([[[ 1, 2, 3]]], [ 0, 0, 1 ]) => 2        (arr[0][0][1])
  */
-function getElementByIndices(/* arr, indices */) {
-  throw new Error('Not implemented');
+function getElementByIndices(arr, indices) {
+  return indices.reduce(function x(result, el) {
+    const res = result[el];
+    return res;
+  }, arr);
 }
 
 /**
